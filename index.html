@@ -182,6 +182,52 @@
 
   .note{margin-top:26px;font-size:15px;color:var(--slate);max-width:44em}
 
+  /* ---------- this week: harvest cards ---------- */
+  .harvest-status{
+    display:flex;align-items:center;gap:10px;
+    font-size:13px;color:var(--slate);letter-spacing:0.03em;
+    padding-bottom:22px;
+  }
+  .harvest-status .sdot{
+    width:8px;height:8px;border-radius:50%;flex:none;background:var(--moss);
+    box-shadow:0 0 0 3px rgba(70,102,59,.18);
+  }
+  .harvest-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(216px,1fr));
+    gap:18px;
+  }
+  .hcard{
+    background:#F5F8F0;border:1px solid var(--line);border-radius:3px;
+    overflow:hidden;display:flex;flex-direction:column;
+  }
+  .hpic{
+    position:relative;aspect-ratio:5/4;background:var(--paper-2);
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .hpic img{width:100%;height:100%;object-fit:cover;display:block}
+  .hpic svg{width:56%;height:56%}
+  .htag{
+    position:absolute;top:10px;left:10px;
+    font-family:'IBM Plex Mono',monospace;font-size:10.5px;
+    letter-spacing:0.08em;text-transform:uppercase;
+    padding:4px 9px;border-radius:2px;
+  }
+  .htag--fresh{background:var(--moss);color:#F1F5EB}
+  .htag--limited{background:var(--amber);color:#211803}
+  .htag--lastcall{background:var(--ink);color:var(--paper)}
+  .htag--sold{background:var(--slate);color:#EEF2E8}
+  .htag--collected{background:var(--moss);color:#F1F5EB}
+  .hcard.is-sold{opacity:.5}
+  .hcard.is-sold .hpic{filter:grayscale(.5)}
+  .hbody{padding:13px 15px 15px;display:flex;flex-direction:column;gap:2px}
+  .hbody b{font-family:'Fraunces',serif;font-weight:500;font-size:19px;line-height:1.15}
+  .hnote{font-size:13.5px;color:var(--slate);line-height:1.4;min-height:1.2em}
+  .hprice{font-family:'IBM Plex Mono',monospace;font-size:13.5px;color:var(--moss);margin-top:4px}
+  .harvest-cta{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:30px}
+  .harvest-or{font-size:14px;color:var(--slate)}
+
   /* ---------- steps ---------- */
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
   @media(max-width:760px){.steps{grid-template-columns:1fr;gap:0}}
@@ -299,9 +345,9 @@
 </div>
 
 <!-- ============================================================
-     THIS WEEK  →  EDIT ME EACH WEEK
-     Add / remove <div class="item"> rows below.
-     Add class="sold" to a row to grey it out as sold out.
+     THIS WEEK  →  edit the HARVEST list at the BOTTOM of this file
+     (inside the <script>). Change WEEK_OF, the cutoff, and the rows
+     there — this section fills itself in. No need to touch it here.
      ============================================================ -->
 <section id="week">
   <div class="wrap">
@@ -310,23 +356,16 @@
       <span class="eyebrow">Picked to order</span>
     </div>
 
-    <div class="list rise">
-<div class="item"><b>Coming soon !</b></div>
+    <div class="harvest-status rise"><span class="sdot"></span><span id="harvestWhen">Week of July 14 · order by Wednesday 8&nbsp;pm · pickup Friday 3–6&nbsp;pm</span></div>
 
-<!--
-      <div class="item"><b>Pasture-raised eggs</b><span class="price">$7 / dozen</span></div>
-      <div class="item"><b>Provider green beans</b><span class="price">$5 / lb</span></div>
-      <div class="item"><b>Red Noodle beans</b><span class="price">$4 / bunch</span></div>
-      <div class="item"><b>Cherry tomatoes</b><span class="price">$5 / pint</span></div>
-      <div class="item"><b>Zucchini</b><span class="price">$3 / lb</span></div>
-      <div class="item"><b>Cucumbers</b><span class="price">$1.50 each</span></div>
-      <div class="item"><b>Lettuce</b><span class="price">$3 / head</span></div>
-      <div class="item sold"><b>Zinnia bouquet</b><span class="price">Sold out</span></div>
-   
---> 
+    <div class="harvest-grid rise" id="harvestGrid"></div>
+
+    <div class="harvest-cta rise">
+      <a class="btn btn-solid" id="orderBtn" href="ORDER_FORM_URL">Start your order</a>
+      <span class="harvest-or">…or just reply to this week's message.</span>
     </div>
 
-    <p class="note rise">Everything is harvested Friday morning, the same day you pick it up. Quantities are small and real — when a row is greyed out, it's gone for the week.</p>
+    <p class="note rise">Everything is harvested Friday morning, the same day you pick it up. Quantities are small and real — when an item is greyed out, it's gone for the week.</p>
   </div>
 </section>
 
@@ -416,15 +455,21 @@
          Buttondown:  https://buttondown.email/api/emails/embed-subscribe/YOURNAME
          Mailchimp:   paste the form action from your Mailchimp embed code
          ============================================================ -->
-    <form class="rise" action="https://buttondown.email/api/emails/embed-subscribe/YOURNAME" method="post" target="_blank">
+    <!--
+<form class="rise" action="https://buttondown.email/api/emails/embed-subscribe/YOURNAME" method="post" target="_blank">
       <input type="email" name="email" placeholder="you@email.com" aria-label="Email address" required>
       <button type="submit">Join the list</button>
-    </form>
+    </form>  -->
+<form class="rise" action="https://docs.google.com/forms/d/e/1FAIpQLSd4pQpBGAJFWO62sqavyP0EqOEzzSnhAJ-e4lkJNAahljdG7A/viewform?usp=pp_url" method="get" target="_blank">
+    <button type="submit">Join the list</button>
+</form>
 
     <!-- Replace the # with your real WhatsApp / KakaoTalk invite links -->
     <div class="chan rise">
-      <a href="#">WHATSAPP GROUP</a>
-      <a href="#">KAKAOTALK 카카오톡</a>
+      <a href="https://www.instagram.com/sun.hareloomfarm/">INSTAGRAM</a>
+
+    <!--  <a href="#">WHATSAPP GROUP</a>
+      <a href="#">KAKAOTALK 카카오톡</a> -->
       <a href="mailto:info@hareloomfarm.com">EMAIL US</a>
     </div>
   </div>
@@ -438,6 +483,66 @@
 </footer>
 
 <script>
+  /* ============================================================
+     THIS WEEK — edit these three things each week, nothing else.
+       1. ORDER_FORM_URL  — paste your Google order-form link once
+       2. WEEK_OF         — the date + cutoff line at the top
+       3. HARVEST         — what's available (rows below)
+     ============================================================ */
+
+  var ORDER_FORM_URL = "https://forms.gle/T4D8XRBfLYoBc6nt5";
+
+  var WEEK_OF = "Week of July 14 \u00b7 order by Wednesday 8 pm \u00b7 pickup Friday 3\u20136 pm";
+
+  // tag:  "fresh" | "limited" | "lastcall" | "sold" | "collected" 
+  // type: egg, tomato, squash, cucumber, beans, lettuce, basil, pepper
+  // to show a real photo instead of the drawing, add:  img:"eggs.jpg"
+  var HARVEST = [
+    { name:"Pasture-raised eggs", note:"mixed browns, from the rotating flock", price:"$6 / dozen", tag:"collected",   type:"egg", img:"eggs.jpg"      },
+    { name:"Cherry tomatoes",     note:"first of the season, sweet",            price:"$5 / pint",  tag:"sold", type:"tomato"   },
+    { name:"Zucchini & squash",   note:"picked small and tender",               price:"$3 / lb",    tag:"fresh",   type:"squash", img:"squash.jpg"  },
+    { name:"Cucumbers",           note:"crisp, cut cool",                       price:"$1.50 each", tag:"sold",   type:"cucumber" },
+    { name:"Provider green beans",note:"stringless bush beans",                 price:"$5 / lb",    tag:"sold",   type:"beans"    },
+    { name:"Lettuce",             note:"heat-tolerant leaf, washed",            price:"$3 / head",  tag:"limited", type:"lettuce", img:"lettuce.jpg"  },
+    { name:"Sweet Potato plants",      note:"tender tips, excellent stir-fried",                  price:"$4 per bunch (10 oz)", tag:"fresh",   type:"sp", img:"sp.jpg"   },
+    { name:"Red Noodle beans",    note:"back next week",                        price:"\u2014",     tag:"sold",    type:"beans"    }
+  ];
+
+  /* ---- renders the cards; no need to edit below ---- */
+  (function(){
+    var ICONS = {
+      egg:'<svg viewBox="0 0 100 100"><ellipse cx="40" cy="58" rx="19" ry="24" fill="#E9DFC6" stroke="#16241D" stroke-width="2.4"/><ellipse cx="63" cy="52" rx="16" ry="20" fill="#EFE7D4" stroke="#16241D" stroke-width="2.4"/></svg>',
+      tomato:'<svg viewBox="0 0 100 100"><circle cx="50" cy="56" r="26" fill="#A9482E"/><path d="M50 32c-3-6-8-8-13-6 3 1 5 4 5 7-5-2-10-1-13 3 4 0 8 2 10 5 2-3 6-6 11-6s9 3 11 6c2-3 6-5 10-5-3-4-8-5-13-3 0-3 2-6 5-7-5-2-10 0-13 6z" fill="#46663B"/></svg>',
+      squash:'<svg viewBox="0 0 100 100"><g transform="rotate(-28 50 50)"><path d="M50 22c-7 0-11 6-11 13 0 6 3 8 3 15 0 11 4 22 8 22s8-11 8-22c0-7 3-9 3-15 0-7-4-13-11-13z" fill="#B87D22"/><rect x="47" y="14" width="6" height="11" rx="3" fill="#46663B"/></g></svg>',
+      cucumber:'<svg viewBox="0 0 100 100"><g transform="rotate(-32 50 50)"><rect x="35" y="20" width="30" height="60" rx="15" fill="#3F5E32"/><rect x="41" y="26" width="18" height="48" rx="9" fill="#6E8F5A"/><circle cx="50" cy="40" r="1.5" fill="#2c4322"/><circle cx="46" cy="52" r="1.5" fill="#2c4322"/><circle cx="54" cy="62" r="1.5" fill="#2c4322"/></g></svg>',
+      lettuce:'<svg viewBox="0 0 100 100"><circle cx="50" cy="56" r="25" fill="#6E8F5A"/><path d="M28 54c3-11 13-18 22-18s19 7 22 18c-6-4-10-2-12 2-3-5-7-6-10-6s-7 1-10 6c-2-4-6-6-12-2z" fill="#88A874"/><path d="M32 62c5-3 8-1 10 3 3-6 6-7 8-7s5 1 8 7c2-4 5-6 10-3-4 9-13 15-18 15s-13-6-18-15z" fill="#46663B"/></svg>',
+      beans:'<svg viewBox="0 0 100 100"><g fill="none" stroke="#46663B" stroke-width="7" stroke-linecap="round"><path d="M30 78C26 54 40 34 66 24"/><path d="M40 80C36 56 50 36 76 26"/><path d="M50 82C46 58 60 38 86 28"/></g></svg>',
+      sp:'<svg viewBox="0 0 100 100"><path d="M50 84V40" stroke="#46663B" stroke-width="4" stroke-linecap="round"/><path d="M50 46c-13-2-21-11-21-23 11 0 21 8 21 19zM50 60c-11-2-18-9-18-19 10 0 18 7 18 17z" fill="#3F5E32"/><path d="M50 46c13-2 21-11 21-23-11 0-21 8-21 19zM50 60c11-2 18-9 18-19-10 0-18 7-18 17z" fill="#6E8F5A"/></svg>',
+      pepper:'<svg viewBox="0 0 100 100"><path d="M50 34c10 0 21 4 21 22 0 15-9 25-21 25s-21-10-21-25c0-18 11-22 21-22z" fill="#46663B"/><path d="M50 34c6 0 12 2 16 9-4 3-8 3-11 0-3 3-7 3-10 0-4 3-8 3-11 0 4-7 10-9 16-9z" fill="#6E8F5A"/><rect x="47" y="18" width="6" height="17" rx="3" fill="#3F5E32"/></svg>',
+      sprig:'<svg viewBox="0 0 100 100"><path d="M50 84V30" stroke="#46663B" stroke-width="4" stroke-linecap="round"/><path d="M50 44C40 44 32 38 30 28c10 0 18 6 20 16zM50 44c10 0 18-6 20-16-10 0-18 6-20 16z" fill="#6E8F5A"/></svg>'
+    };
+    var LABEL = { fresh:"Just picked", limited:"Limited", lastcall:"Last call", sold:"Sold out", collected:"Just collected" };
+
+    var when = document.getElementById('harvestWhen');
+    if(when) when.textContent = WEEK_OF;
+    var btn = document.getElementById('orderBtn');
+    if(btn) btn.setAttribute('href', ORDER_FORM_URL);
+
+    var grid = document.getElementById('harvestGrid');
+    if(!grid) return;
+    HARVEST.forEach(function(it){
+      var art = it.img ? '<img src="'+it.img+'" alt="'+it.name+'">' : (ICONS[it.type] || ICONS.sprig);
+      var card = document.createElement('article');
+      card.className = 'hcard' + (it.tag === 'sold' ? ' is-sold' : '');
+      card.innerHTML =
+        '<div class="hpic"><span class="htag htag--'+it.tag+'">'+(LABEL[it.tag]||'')+'</span>'+art+'</div>'+
+        '<div class="hbody"><b>'+it.name+'</b>'+
+        '<span class="hnote">'+(it.note||'')+'</span>'+
+        '<span class="hprice">'+(it.price||'')+'</span></div>';
+      grid.appendChild(card);
+    });
+  })();
+
   /* ---- Contour map in "The land": nested level-sets, high NW → low SE ---- */
   (function(){
     var g = document.getElementById('lines');
