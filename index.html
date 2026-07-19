@@ -363,7 +363,7 @@
   <div class="wrap hero-inner">
     <p class="eyebrow">Hopewell Township, New Jersey</p>
     <h1>Hareloom<br><em>Farm</em></h1>
-    <p class="lede">Twelve acres on a southeast slope. Eggs from a rotating flock, vegetables from six beds, and an orchard we're planting along the contour lines.</p>
+    <p class="lede">Ecological farm in Hopewell Township, New Jersey. We raise free-range chickens and grow seasonal produce without synthetic pesticides or artificial fertilizers. Our mission is to regenerate the land, protect biodiversity, and provide healthy food for our community.</p>
 
     <div class="coords">
       <span><i class="dot" style="background:var(--amber)"></i>Elev 356–380 ft</span>
@@ -422,10 +422,15 @@
         <p>Check the list above and place your order through the form. Takes a minute. We total it up and plan the harvest around it.</p>
       </div>
       <div class="step">
-        <p class="day">Friday, 3–6pm</p>
+        <p class="day">Friday, 3–6pm or at your convenient time</p>
         <h3>Pick up</h3>
         <p>Come by during the window. Pay by Venmo, Zelle, or cash. Nothing is picked before it's spoken for.</p>
       </div>
+    </div>
+
+    <div class="rise" style="margin-top:44px;display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+      <a class="btn btn-solid" href="#join">Join the list</a>
+      <span class="p" style="margin:0">Get the heads-up when each week's list goes up.</span>
     </div>
   </div>
 </section>
@@ -531,6 +536,7 @@
 
     <div class="chan rise">
       <a href="https://www.instagram.com/sun.hareloomfarm/">INSTAGRAM</a>
+      <a href="https://www.facebook.com/profile.php?id=61591883979468">FACEBOOK</a>
       <a href="mailto:info@hareloomfarm.com">EMAIL US</a>
     </div>
   </div>
@@ -553,20 +559,20 @@
 
   var ORDER_FORM_URL = "https://forms.gle/T4D8XRBfLYoBc6nt5";
 
-  var WEEK_OF = "Week of July 14 \u00b7 order by Wednesday 8 pm \u00b7 pickup Friday 3\u20136 pm";
+  var WEEK_OF = "Week of July 14 \u00b7 order by Wednesday 8 pm \u00b7 pickup Friday 3\u20136 pm or at your convenient time";
 
   // tag:  "fresh" | "limited" | "lastcall" | "sold" | "collected" 
   // type: egg, tomato, squash, cucumber, beans, lettuce, basil, pepper
   // to show a real photo instead of the drawing, add:  img:"eggs.jpg"
   var HARVEST = [
     { name:"Pasture-raised eggs", note:"mixed browns, from the rotating flock", price:"$6 / dozen", tag:"collected",   type:"egg", img:"eggs.jpg"      },
-    { name:"Cherry tomatoes",     note:"first of the season, sweet",            price:"$5 / pint",  tag:"sold", type:"tomato"   },
+    { name:"Cherry tomatoes",     note:"first of the season, sweet",            price:"$5 / pint",  tag:"sold", type:"tomato", img:"cherrytomatos.jpeg"  },
     { name:"Zucchini & squash",   note:"picked small and tender",               price:"$3 / lb",    tag:"fresh",   type:"squash", img:"squash.jpg"  },
-    { name:"Cucumbers",           note:"crisp, cut cool",                       price:"$1.50 each", tag:"sold",   type:"cucumber" },
-    { name:"Provider green beans",note:"stringless bush beans",                 price:"$5 / lb",    tag:"sold",   type:"beans"    },
+    { name:"Cucumbers",           note:"crisp, cut cool",                       price:"$1.50 each", tag:"sold",   type:"cucumber", img:"cucumber.jpg" },
+    { name:"Provider green beans",note:"stringless bush beans",                 price:"$5 / lb",    tag:"sold",   type:"beans" , img:"provider bean.jpg"   },
     { name:"Lettuce",             note:"heat-tolerant leaf, washed",            price:"$3 / head",  tag:"limited", type:"lettuce", img:"lettuce.jpg"  },
     { name:"Sweet Potato plants",      note:"tender tips, excellent stir-fried",                  price:"$4 per bunch (10 oz)", tag:"fresh",   type:"sp", img:"sp.jpg"   },
-    { name:"Red Noodle beans",    note:"back next week",                        price:"\u2014",     tag:"sold",    type:"beans"    }
+    { name:"Red Noodle beans",    note:"back next week",                        price:"\u2014",     tag:"sold",    type:"beans", img:"red noodle bean.jpeg"    }
   ];
 
   /* ---- renders the cards; no need to edit below ---- */
